@@ -1,0 +1,21 @@
+install.packages("arules")
+library(arules)
+my_gr <- read.csv(file.choose())
+View(my_gr)
+# Here , rules generated having the less support
+gr_rules_01 <- apriori(my_gr,parameter = list(support=0.002,confidence=0.5))
+inspect(head(sort(gr_rules_01,by= "lift")))
+install.packages("arulesViz")
+library(arulesViz)
+plot(gr_rules_01,method = "grouped")
+plot(gr_rules_01,method = "scatterplot")
+plot(gr_rules_01,method = "graph")
+
+# Here , rules generated having the 10% support
+gr_rules_02 <- apriori(my_gr,parameter = list(support=0.1,confidence=0.5))
+inspect(head(sort(gr_rules_02,by= "lift")))
+install.packages("arulesViz")
+library(arulesViz)
+plot(gr_rules_02,method = "grouped")
+plot(gr_rules_02,method = "scatterplot")
+plot(gr_rules_02,method = "graph")
